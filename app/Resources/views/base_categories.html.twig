@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    {% block stylesheets %}
+        {% stylesheets 'bundles/app/css/*' filter='cssrewrite' %}
+        <link href="{{ asset('bundles/app/css/search_btn.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/app/css/top_panel.css') }}" rel="stylesheet">
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-3"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('mainpage_page') }}">Final Year Project</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-3">
+
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ path('mainpage_page') }}">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b
+                                class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('crime') }}">Crime Rate</a></li>
+                        <li><a href="{{ path('fire') }}">Fire Incidents</a></li>
+                        <li><a href="{{ path('land') }}">Land Property</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="{{ path('comp_tool') }}">Comparison Tool</a></li>
+                <li><a href="{{ path('faq') }}">Faq</a></li>
+                <li><a href="{{ path('about') }}">About</a></li>
+                <li>
+                    <a class="btn btn-default btn-outline btn-circle" data-toggle="collapse" href="#nav-collapse3"
+                       aria-expanded="false" aria-controls="nav-collapse3">Search</a>
+                </li>
+            </ul>
+
+            <div class="collapse nav navbar-nav nav-collapse" id="nav-collapse3">
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search"/>
+                    </div>
+                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-search"
+                                                                       aria-hidden="true"></span></button>
+                </form>
+            </div>
+
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% block body %}
+            {% endblock %}
+            <div class="tabbable-panel">
+                <div class="tabbable-line">
+                    <ul class="nav nav-tabs ">
+                        <li class="active">
+                            <a href="#tab_default_1" data-toggle="tab">
+                                Tab 1 </a>
+                        </li>
+                        <li>
+                            <a href="#tab_default_2" data-toggle="tab">
+                                Tab 2 </a>
+                        </li>
+                        <li>
+                            <a href="#tab_default_3" data-toggle="tab">
+                                Tab 3 </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_default_1">
+                            <p>
+                                I'm in Tab 1.
+                            </p>
+                            <p>
+                                Duis autem eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
+                            </p>
+                            <p>
+                                <a class="btn btn-success" href="http://j.mp/metronictheme" target="_blank">
+                                    Learn more...
+                                </a>
+                            </p>
+                        </div>
+                        <div class="tab-pane" id="tab_default_2">
+                            <p>
+                                Howdy, I'm in Tab 2.
+                            </p>
+                            <p>
+                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
+                            </p>
+                            <p>
+                                <a class="btn btn-warning" href="http://j.mp/metronictheme" target="_blank">
+                                    Click for more features...
+                                </a>
+                            </p>
+                        </div>
+                        <div class="tab-pane" id="tab_default_3">
+                            <p>
+                                Howdy, I'm in Tab 3.
+                            </p>
+                            <p>
+                                Duis autem vel eum iriure dolor in hendrerit in vulputate. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat
+                            </p>
+                            <p>
+                                <a class="btn btn-info" href="http://j.mp/metronictheme" target="_blank">
+                                    Learn more...
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div><!-- /.container -->
+
+{% block javascripts %}
+
+    {% javascripts '@AppBundle/Resources/public/js/*' %}
+    {% endjavascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock %}
+
+</body>
+</html>

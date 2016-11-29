@@ -19,7 +19,7 @@ class fypController extends Controller
     }
 
     /**
-     * @Route("/mainpage", name="mainpage_page")
+     * @Route("/", name="mainpage_page")
      */
     public function indexAction(Request $request)
     {
@@ -56,6 +56,36 @@ class fypController extends Controller
 
         // replace this example code with whatever you need
         return $this->render('mainpage/about.html.twig');
+    }
+
+    /**
+     * @Route("/fire", name="fire")
+     */
+    public function fireAction(Request $request)
+    {
+
+        // replace this example code with whatever you need
+        return $this->render('categories/fire.html.twig');
+    }
+
+    /**
+     * @Route("/crime", name="crime")
+     */
+    public function crimeAction(Request $request)
+    {
+
+        // replace this example code with whatever you need
+        return $this->render('categories/crimerate.html.twig');
+    }
+
+    /**
+     * @Route("/land", name="land")
+     */
+    public function landAction(Request $request)
+    {
+
+        // replace this example code with whatever you need
+        return $this->render('categories/land.html.twig');
     }
 
 }
