@@ -7,21 +7,19 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
     <title>{% block title %}Welcome!{% endblock %}</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
     {% block stylesheets %}
-        {% stylesheets 'bundles/app/css/*' filter='cssrewrite' %}
-        <link href="{{ asset('bundles/app/css/search_btn.css') }}" rel="stylesheet">
-        <link href="{{ asset('bundles/app/css/top_panel.css') }}" rel="stylesheet">
-        {% endstylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/search_btn.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/mainpage_tile.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/map.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-
 </head>
 
 <body>
@@ -29,20 +27,21 @@
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-3"
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-3"
                     aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ path('mainpage_page') }}">Final Year Project</a>
+            <a class="navbar-brand" href="/">Final Year Project</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse-3">
 
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ path('mainpage_page') }}">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b
                                 class="caret"></b></a>
@@ -58,21 +57,12 @@
                 <li><a href="{{ path('comp_tool') }}">Comparison Tool</a></li>
                 <li><a href="{{ path('faq') }}">Faq</a></li>
                 <li><a href="{{ path('about') }}">About</a></li>
-                <li>
-                    <a class="btn btn-default btn-outline btn-circle" data-toggle="collapse" href="#nav-collapse3"
-                       aria-expanded="false" aria-controls="nav-collapse3">Search</a>
-                </li>
             </ul>
 
-            <div class="collapse nav navbar-nav nav-collapse" id="nav-collapse3">
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search"/>
-                    </div>
-                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-search"
-                                                                       aria-hidden="true"></span></button>
-                </form>
-            </div>
+            <form class="form-inline float-xs-right">
+                <input class="form-control" type="text" placeholder="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
 
         </div><!--/.nav-collapse -->
     </div>
@@ -88,55 +78,39 @@
                     <ul class="nav nav-tabs ">
                         <li class="active">
                             <a href="#tab_default_1" data-toggle="tab">
-                                Tab 1 </a>
+                                Map </a>
                         </li>
                         <li>
                             <a href="#tab_default_2" data-toggle="tab">
-                                Tab 2 </a>
-                        </li>
-                        <li>
-                            <a href="#tab_default_3" data-toggle="tab">
-                                Tab 3 </a>
+                                Statistics </a>
                         </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_default_1">
-                            <p>
-                                I'm in Tab 1.
-                            </p>
-                            <p>
-                                Duis autem eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
-                            </p>
-                            <p>
-                                <a class="btn btn-success" href="http://j.mp/metronictheme" target="_blank">
-                                    Learn more...
-                                </a>
-                            </p>
+                            <div id="map"></div>
+                            <script>
+                                function initMap() {
+                                    var aston = {lat: 52.487232, lng: -1.8896852};
+                                    var newstrt = {lat: 52.4767888, lng: -1.9005224};
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                        zoom: 14,
+                                        center: aston
+                                    });
+                                    var marker = new google.maps.Marker({
+                                        position: aston,
+                                        map: map
+                                    });
+                                    var marker2 = new google.maps.Marker({
+                                        position: newstrt,
+                                        map: map
+                                    });
+                                }
+                            </script>
+
                         </div>
                         <div class="tab-pane" id="tab_default_2">
                             <p>
-                                Howdy, I'm in Tab 2.
-                            </p>
-                            <p>
-                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
-                            </p>
-                            <p>
-                                <a class="btn btn-warning" href="http://j.mp/metronictheme" target="_blank">
-                                    Click for more features...
-                                </a>
-                            </p>
-                        </div>
-                        <div class="tab-pane" id="tab_default_3">
-                            <p>
-                                Howdy, I'm in Tab 3.
-                            </p>
-                            <p>
-                                Duis autem vel eum iriure dolor in hendrerit in vulputate. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat
-                            </p>
-                            <p>
-                                <a class="btn btn-info" href="http://j.mp/metronictheme" target="_blank">
-                                    Learn more...
-                                </a>
+                                I'm in Statistics Tab.
                             </p>
                         </div>
                     </div>
@@ -148,14 +122,27 @@
 
 </div><!-- /.container -->
 
-{% block javascripts %}
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large waves-effect waves-light red" href="{{ path('comp_tool') }}"><i class="material-icons">compare</i></a>
+</div>
 
-    {% javascripts '@AppBundle/Resources/public/js/*' %}
-    {% endjavascripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/dropdown.js') }}"></script>
+    <script src="{{ asset('js/search_btn.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAvb9PdlmutL-nm7uJSKWJIzcHnXx1JUU&callback=initMap"
+            async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 {% endblock %}
 
 </body>
 </html>
+
+
+
+
