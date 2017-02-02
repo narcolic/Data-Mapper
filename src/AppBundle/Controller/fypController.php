@@ -79,13 +79,13 @@ class fypController extends Controller
     }
 
     /**
-     * @Route("/land", name="land")
+     * @Route("/traffic", name="traffic")
      */
-    public function landAction(Request $request)
+    public function trafficAction(Request $request)
     {
 
         // replace this example code with whatever you need
-        return $this->render('categories/land.html.twig');
+        return $this->render('categories/traffic.html.twig');
     }
 
 }

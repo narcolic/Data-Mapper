@@ -7,6 +7,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/behat/transliterator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/codeception" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/container-interop/container-interop" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/collections" />
@@ -89,11 +90,15 @@
       <library name="PHARS">
         <CLASSES>
           <root url="phar://$MODULE_DIR$/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Fixtures/includes/ProjectWithXsdExtensionInPhar.phar/" />
+          <root url="phar://$MODULE_DIR$/vendor/phpunit/phpunit/tests/_files/phpunit-example-extension/tools/phpunit.d/phpunit-example-extension-1.0.0.phar/" />
           <root url="phar://$MODULE_DIR$/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/vendor/twig/twig/test/Twig/Tests/Loader/Fixtures/phar/phar-sample.phar/" />
         </CLASSES>
         <SOURCES>
           <root url="phar://$MODULE_DIR$/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Fixtures/includes/ProjectWithXsdExtensionInPhar.phar/" />
+          <root url="phar://$MODULE_DIR$/vendor/phpunit/phpunit/tests/_files/phpunit-example-extension/tools/phpunit.d/phpunit-example-extension-1.0.0.phar/" />
           <root url="phar://$MODULE_DIR$/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/vendor/twig/twig/test/Twig/Tests/Loader/Fixtures/phar/phar-sample.phar/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -105,6 +110,7 @@
           <root url="file://$MODULE_DIR$/vendor/behat/transliterator" />
           <root url="file://$MODULE_DIR$/vendor/codeception/codeception" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/container-interop/container-interop" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/cache" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/collections" />
@@ -177,6 +183,7 @@
           <root url="file://$MODULE_DIR$/vendor/behat/transliterator" />
           <root url="file://$MODULE_DIR$/vendor/codeception/codeception" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/container-interop/container-interop" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/cache" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/collections" />
