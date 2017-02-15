@@ -1,0 +1,17 @@
+# src/AppBundle/Resources/config/doctrine/Poi.orm.yml
+AppBundle\Entity\Poi:
+    type: entity
+    table: Crimepoi
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        long:
+            type: float
+        lat:
+            type: float
+        date:
+            type: date
+        idloc:
+            type: integer

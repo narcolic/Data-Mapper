@@ -1,0 +1,12 @@
+# src/AppBundle/Resources/config/doctrine/Location.orm.yml
+AppBundle\Entity\Location:
+    type: entity
+    table: Location
+    id:
+        idloc:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 100
