@@ -1,5 +1,5 @@
-# src/AppBundle/Resources/config/doctrine/Poi.orm.yml
-AppBundle\Entity\Poi:
+# src/AppBundle/Resources/config/doctrine/CrimePoi.orm.yml
+AppBundle\Entity\CrimePoi:
     type: entity
     table: Crimepoi
     id:

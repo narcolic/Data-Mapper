@@ -73,9 +73,12 @@ class fypController extends Controller
      */
     public function crimeAction(Request $request)
     {
+        $crimepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:CrimePoi')
+            ->findAll();
 
         // replace this example code with whatever you need
-        return $this->render('categories/crimerate.html.twig');
+        return $this->render('categories/crimerate.html.twig', array('viewCrimepoi'=> $crimepoi));
     }
 
     /**

@@ -2,27 +2,65 @@
 
 {% block body %}
     crime rate
+    {#    {% for key in viewCrimepoi %}
+        <div>
+            {{ key.long }}
+            {{ key.lat }}
+        </div>
+        {% endfor %}#}
 {% endblock %}
 
 {% block map %}
-<div id="map"></div>
-<script>
-    function initMap() {
-        var aston = {lat: 52.487232, lng: -1.8896852};
-        var newstrt = {lat: 52.4767888, lng: -1.9005224};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 14,
-            center: aston
-        });
-        var marker = new google.maps.Marker({
-            position: aston,
-            map: map
-        });
-        var marker2 = new google.maps.Marker({
-            position: newstrt,
-            map: map
-        });
-    }
-</script>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var aston = {lat: 52.487232, lng: -1.8896852};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: aston
+            });
+
+            /*var markers = [];*/
+            {% for key in viewCrimepoi %}
+
+            var pos = new google.maps.LatLng({{ key.lat }}, {{ key.long }});
+            var dates = sqlToJsDate({{ key.date }});
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                description: dates.toString()
+            });
+
+            google.maps.event.addListener(marker, 'click', function () {
+                alert(marker.description)
+            })
+
+            {% endfor %}
+
+        }
+
+        function sqlToJsDate(sqlDate){
+            //sqlDate in SQL DATETIME format ("yyyy-mm-dd hh:mm:ss.ms")
+            var sqlDateArr1 = sqlDate.split("-");
+            //format of sqlDateArr1[] = ['yyyy','mm','dd hh:mm:ms']
+            var sYear = sqlDateArr1[0];
+            var sMonth = (Number(sqlDateArr1[1]) - 1).toString();
+            var sqlDateArr2 = sqlDateArr1[2].split(" ");
+            //format of sqlDateArr2[] = ['dd', 'hh:mm:ss.ms']
+            var sDay = sqlDateArr2[0];
+            var sqlDateArr3 = sqlDateArr2[1].split(":");
+            //format of sqlDateArr3[] = ['hh','mm','ss.ms']
+            var sHour = sqlDateArr3[0];
+            var sMinute = sqlDateArr3[1];
+            var sqlDateArr4 = sqlDateArr3[2].split(".");
+            //format of sqlDateArr4[] = ['ss','ms']
+            var sSecond = sqlDateArr4[0];
+            var sMillisecond = sqlDateArr4[1];
+            return new Date(sYear,sMonth,sDay,sHour,sMinute,sSecond,sMillisecond);
+        }
+
+    </script>
+
+
 
 {% endblock %}
