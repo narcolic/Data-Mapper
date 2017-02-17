@@ -12,6 +12,6 @@ AppBundle\Entity\CrimePoi:
         lat:
             type: float
         date:
-            type: date
+            type: text
         idloc:
             type: integer

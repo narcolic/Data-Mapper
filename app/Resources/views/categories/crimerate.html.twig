@@ -23,17 +23,16 @@
             /*var markers = [];*/
             {% for key in viewCrimepoi %}
 
-            var pos = new google.maps.LatLng({{ key.lat }}, {{ key.long }});
-            var dates = sqlToJsDate({{ key.date }});
+            var pos = new google.maps.LatLng({{ key.long }}, {{ key.lat }});
             var marker = new google.maps.Marker({
                 position: pos,
-                map: map,
-                description: dates.toString()
+                map: map
             });
 
-            google.maps.event.addListener(marker, 'click', function () {
-                alert(marker.description)
-            })
+           /* var infowindow = new google.maps.InfoWindow({
+                content:
+            });
+            infowindow.open(map, marker);*/
 
             {% endfor %}
 
