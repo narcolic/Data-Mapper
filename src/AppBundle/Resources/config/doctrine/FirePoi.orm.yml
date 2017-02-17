@@ -1,0 +1,17 @@
+# src/AppBundle/Resources/config/doctrine/FirePoi.orm.yml
+AppBundle\Entity\FirePoi:
+    type: entity
+    table: Firepoi
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        long:
+            type: float
+        lat:
+            type: float
+        date:
+            type: text
+        idloc:
+            type: integer
