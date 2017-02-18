@@ -64,8 +64,19 @@ class fypController extends Controller
     public function fireAction(Request $request)
     {
 
+        $firepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:FirePoi')
+            ->findAll();
+
+        $crimepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:CrimePoi')
+            ->findAll();
+
         // replace this example code with whatever you need
-        return $this->render('categories/fire.html.twig');
+        return $this->render(
+            'categories/fire.html.twig',
+            array('viewFirepoi' => $firepoi, 'viewCrimePoi'=> $crimepoi)
+        );
     }
 
     /**
@@ -78,7 +89,7 @@ class fypController extends Controller
             ->findAll();
 
         // replace this example code with whatever you need
-        return $this->render('categories/crimerate.html.twig', array('viewCrimepoi'=> $crimepoi));
+        return $this->render('categories/crimerate.html.twig', array('viewCrimepoi' => $crimepoi));
     }
 
     /**

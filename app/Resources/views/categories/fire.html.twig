@@ -9,19 +9,32 @@
     <script>
         function initMap() {
             var aston = {lat: 52.487232, lng: -1.8896852};
-            var newstrt = {lat: 52.4767888, lng: -1.9005224};
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
                 center: aston
             });
+
+
+            {% for key in viewCrimePoi %}
+            var crimeicon = 'http://i.imgur.com/0ldv7Q8.png';
+            var pos = new google.maps.LatLng({{ key.long }}, {{ key.lat }});
             var marker = new google.maps.Marker({
-                position: aston,
-                map: map
+                position: pos,
+                map: map,
+                icon: crimeicon
             });
+            {% endfor %}
+
+            {% for key2 in viewFirepoi %}
+            var fireicon = 'http://i.imgur.com/gFcRPgn.png';
+            var pos2 = new google.maps.LatLng({{ key2.long }}, {{ key2.lat }});
             var marker2 = new google.maps.Marker({
-                position: newstrt,
-                map: map
+                position: pos2,
+                map: map,
+                icon: fireicon
             });
+            {% endfor %}
+
         }
     </script>
 {% endblock %}
