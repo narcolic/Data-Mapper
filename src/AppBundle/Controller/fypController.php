@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Ob\HighchartsBundle\Highcharts\Highchart;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +34,6 @@ class fypController extends Controller
      */
     public function comptoolAction(Request $request)
     {
-
         // replace this example code with whatever you need
         return $this->render('comptool/comparisontool.html.twig');
     }
@@ -68,14 +68,34 @@ class fypController extends Controller
             ->getRepository('AppBundle:FirePoi')
             ->findAll();
 
+        $brumfirepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:FirePoi')
+            ->findBy(array('loc' => 'Birmingham'));
+
+        $londonfirepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:FirePoi')
+            ->findBy(array('loc' => 'London'));
+
+        $manchfirepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:FirePoi')
+            ->findBy(array('loc' => 'Manchester'));
+
+
         $crimepoi = $this->getDoctrine()
             ->getRepository('AppBundle:CrimePoi')
             ->findAll();
 
+
         // replace this example code with whatever you need
         return $this->render(
             'categories/fire.html.twig',
-            array('viewFirepoi' => $firepoi, 'viewCrimePoi'=> $crimepoi)
+            array(
+                'viewFirepoi' => $firepoi,
+                'viewCrimePoi' => $crimepoi,
+                'viewBrumFirePoi' => $brumfirepoi,
+                'viewLondonFirePoi' => $londonfirepoi,
+                'viewManchFirePoi' => $manchfirepoi,
+            )
         );
     }
 

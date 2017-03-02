@@ -13,5 +13,5 @@ AppBundle\Entity\FirePoi:
             type: float
         date:
             type: text
-        idloc:
-            type: integer
+        loc:
+            type: text

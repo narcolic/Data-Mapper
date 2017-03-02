@@ -1,6 +1,8 @@
 <?php
 namespace AppBundle\Entity;
 
+use Symfony\Component\Intl\DateFormatter\DateFormat\MonthTransformer;
+
 class FirePoi
 {
     private $id;
@@ -11,7 +13,9 @@ class FirePoi
 
     private $date;
 
-    private $idloc;
+    private $loc;
+
+
 
     /**
      * Get id
@@ -96,26 +100,39 @@ class FirePoi
     }
 
     /**
-     * Set idloc
+     * Set loc
      *
-     * @param integer $idloc
+     * @param string $loc
      *
      * @return FirePoi
      */
-    public function setIdloc($idloc)
+    public function setLoc($loc)
     {
-        $this->idloc = $idloc;
+        $this->loc = $loc;
 
         return $this;
     }
 
     /**
-     * Get idloc
+     * Get loc
      *
-     * @return integer
+     * @return string
      */
-    public function getIdloc()
+    public function getLoc()
     {
-        return $this->idloc;
+        return $this->loc;
+    }
+
+
+    /**
+     * Get month
+     *
+     * @return string
+     */
+    public function getMonth()
+    {
+        $test = $this->date;
+        $outro=explode('-',$test);
+        return $outro[1];
     }
 }

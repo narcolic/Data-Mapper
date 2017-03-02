@@ -2,6 +2,7 @@
 
 {% block body %}
     fire incidents
+
 {% endblock %}
 
 {% block map %}
@@ -37,4 +38,101 @@
 
         }
     </script>
+{% endblock %}
+
+{% block charts %}
+    <div id="linechart"></div>
+{% endblock %}
+
+{% block chartJS %}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript">
+
+        var bmonths = [];
+        var bcounter = 0;
+        {% for bi in viewBrumFirePoi %}
+        bmonths[bcounter] = {{ bi.month }};
+        bcounter++;
+        {% endfor %}
+        var bmonthcounter = monthcounter(bmonths);
+
+        var lmonths = [];
+        var lcounter = 0;
+        {% for li in viewLondonFirePoi %}
+        lmonths[lcounter] = {{ li.month }};
+        lcounter++;
+        {% endfor %}
+        var lmonthcounter = monthcounter(lmonths);
+
+        var mmonths = [];
+        var mcounter = 0;
+        {% for mi in viewManchFirePoi %}
+        mmonths[mcounter] = {{ mi.month }};
+        mcounter++;
+        {% endfor %}
+        var mmonthcounter = monthcounter(mmonths);
+
+
+        Highcharts.chart('linechart', {
+            title: {
+                text: 'Fire Incidents 2016 - 2017',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Source: Demo database',
+                x: -20
+            },
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            yAxis: {
+                title: {
+                    text: 'No. of Incidents'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: ' Fires'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'Birmingham',
+                //data: [7, 6, 9, 14, 18, 21, 25, 26, 23, 18, 13, 9]
+                data: [bmonthcounter[0], bmonthcounter[1], bmonthcounter[2], bmonthcounter[3], bmonthcounter[4], bmonthcounter[5], bmonthcounter[6], bmonthcounter[7], bmonthcounter[8], bmonthcounter[9], bmonthcounter[10], bmonthcounter[11]]
+            }, {
+                name: 'London',
+                //data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+                data: [lmonthcounter[0], lmonthcounter[1], lmonthcounter[2], lmonthcounter[3], lmonthcounter[4], lmonthcounter[5], lmonthcounter[6], lmonthcounter[7], lmonthcounter[8], lmonthcounter[9], lmonthcounter[10], lmonthcounter[11]]
+            }, {
+                name: 'Manchester',
+                //data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+                data: [mmonthcounter[0], mmonthcounter[1], mmonthcounter[2], mmonthcounter[3], mmonthcounter[4], mmonthcounter[5], mmonthcounter[6], mmonthcounter[7], mmonthcounter[8], mmonthcounter[9], mmonthcounter[10], mmonthcounter[11]]
+            }]
+        });
+
+
+        function monthcounter(params) {
+            var counts = new Uint8Array(12);
+            var num = 0;
+            for (var i = 0; i < params.length; i++) {
+                num = params[i];
+                counts[num - 1] = counts[num - 1] ? counts[num - 1] + 1 : 1;
+            }
+            return counts;
+        }
+
+
+    </script>
+
 {% endblock %}

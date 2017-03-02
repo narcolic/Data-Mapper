@@ -77,7 +77,8 @@
 </div><!-- /.container -->
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a class="btn-floating btn-large waves-effect waves-light red" href="{{ path('comp_tool') }}"><i class="material-icons">compare</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light red" href="{{ path('comp_tool') }}"><i
+                class="material-icons">compare</i></a>
 </div>
 
 
@@ -91,6 +92,7 @@
     <script src="{{ asset('js/dropdown.js') }}"></script>
     <script src="{{ asset('js/search_btn.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    {% block gcharts %}{% endblock %}
 {% endblock %}
 
 </body>
