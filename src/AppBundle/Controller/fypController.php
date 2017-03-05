@@ -39,6 +39,43 @@ class fypController extends Controller
     }
 
     /**
+     * @Route("/map", name="map")
+     */
+    public function mapAction(Request $request)
+    {
+        $firepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:FirePoi')
+            ->findAll();
+
+        $crimepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:CrimePoi')
+            ->findAll();
+
+        return $this->render('mainpage/map.html.twig',
+            array(
+                'viewFirepoi' => $firepoi,
+                'viewCrimePoi' => $crimepoi));
+    }
+
+    /**
+     * @Route("/statistics", name="statistics")
+     */
+    public function statisticsAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render(':statistics:statistics.html.twig');
+    }
+
+    /**
+     * @Route("/generalinfo", name="general_info")
+     */
+    public function generalinfoAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render(':mainpage:ginfo.html.twig');
+    }
+
+    /**
      * @Route("/faq", name="faq")
      */
     public function faqAction(Request $request)
@@ -120,6 +157,63 @@ class fypController extends Controller
 
         // replace this example code with whatever you need
         return $this->render('categories/traffic.html.twig');
+    }
+
+
+    /**
+     * @Route("/firestats", name="firestats")
+     */
+    public function firestatsAction(Request $request)
+    {
+
+        $brumfirepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:FirePoi')
+            ->findBy(array('loc' => 'Birmingham'));
+
+        $londonfirepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:FirePoi')
+            ->findBy(array('loc' => 'London'));
+
+        $manchfirepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:FirePoi')
+            ->findBy(array('loc' => 'Manchester'));
+// replace this example code with whatever you need
+        return $this->render(
+            'statistics/firestats.html.twig',
+            array(
+                'viewBrumFirePoi' => $brumfirepoi,
+                'viewLondonFirePoi' => $londonfirepoi,
+                'viewManchFirePoi' => $manchfirepoi,
+            )
+        );
+    }
+
+    /**
+     * @Route("/crimestats", name="crimestats")
+     */
+    public function crimestatsAction(Request $request)
+    {
+
+        $brumfirepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:FirePoi')
+            ->findBy(array('loc' => 'Birmingham'));
+
+        $londonfirepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:FirePoi')
+            ->findBy(array('loc' => 'London'));
+
+        $manchfirepoi = $this->getDoctrine()
+            ->getRepository('AppBundle:FirePoi')
+            ->findBy(array('loc' => 'Manchester'));
+// replace this example code with whatever you need
+        return $this->render(
+            'statistics/crimestats.html.twig',
+            array(
+                'viewBrumFirePoi' => $brumfirepoi,
+                'viewLondonFirePoi' => $londonfirepoi,
+                'viewManchFirePoi' => $manchfirepoi,
+            )
+        );
     }
 
 }
