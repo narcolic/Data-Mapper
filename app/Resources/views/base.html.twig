@@ -50,7 +50,7 @@
                     <ul class="right top-ul chevron">
                         <li><a href="{{ path('map') }}">Map</a>
                         </li>
-                        <li><a href="{{ path('statistics') }}">Statistics</a>
+                        <li><a>Statistics</a>
                             <ul>
                                 <li><a href="{{ path('crimestats') }}">Crime Rate</a></li>
                                 <li><a href="{{ path('firestats') }}">Fire Incidents</a></li>
@@ -91,6 +91,19 @@
         </div>
     </div>
 </section>
+<footer>
+    <div class="line">
+        <div class="s-12 l-6">
+            <p>Copyright 2017, Aston University</p>
+        </div>
+        <div class="s-12 l-6">
+            <p class="right">
+                <a class="right" href="https://github.com/narcolic" title="Dimitrios Karakatsanis">Design
+                    and coding by Dimitrios Karakatsanis</a>
+            </p>
+        </div>
+    </div>
+</footer>
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
