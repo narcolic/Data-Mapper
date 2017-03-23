@@ -1,7 +1,7 @@
-{% extends 'base_categories.html.twig' %}
+{% extends 'deprecated_base_categories.html.twig' %}
 
 {% block body %}
-    crime rate
+    + traffic
 {% endblock %}
 
 {% block map %}
@@ -9,31 +9,22 @@
     <script>
         function initMap() {
             var aston = {lat: 52.487232, lng: -1.8896852};
+            var newstrt = {lat: 52.4767888, lng: -1.9005224};
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
                 center: aston
             });
-
-            /*var markers = [];*/
-            {% for key in viewCrimepoi %}
-
-            var pos = new google.maps.LatLng({{ key.long }}, {{ key.lat }});
             var marker = new google.maps.Marker({
-                position: pos,
+                position: aston,
+                map: map
+            });
+            var marker2 = new google.maps.Marker({
+                position: newstrt,
                 map: map
             });
 
-           /* var infowindow = new google.maps.InfoWindow({
-                content:
-            });
-            infowindow.open(map, marker);*/
-
-            {% endfor %}
-
+            var trafficLayer = new google.maps.TrafficLayer();
+            trafficLayer.setMap(map);
         }
-
     </script>
-
-
-
 {% endblock %}

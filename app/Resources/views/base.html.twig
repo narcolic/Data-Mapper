@@ -12,13 +12,25 @@
 
 
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/search_btn.css') }}">
         <link rel="stylesheet" href="{{ asset('css/mainpage_tile.css') }}">
         <link rel="stylesheet" href="{{ asset('css/map.css') }}">
-        {#<link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">#}
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&amp;subset=latin,latin-ext'
+              rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ asset('css/components.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/responsee.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/owl.theme.css') }}">
+        <!-- CUSTOM STYLE -->
+        <link rel="stylesheet" href="{{ asset('css/template-style.css') }}">
+
+        <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/modernizr.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/responsee.js') }}"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 
@@ -26,58 +38,59 @@
 
 <body>
 
-
-<nav class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navbar-collapse-3"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Final Year Project</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbar-collapse-3">
-            <ul class="nav navbar-nav">
-                {#<li class="active"><a href="/">Home</a></li>#}
-                <li><a href="{{ path('map') }}">Map</a></li>
-                <li class="dropdown">
-                    <a href="{{ path('statistics') }}">Statistics <b
-                                class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ path('crimestats') }}">Crime Rate</a></li>
-                        <li><a href="{{ path('firestats') }}">Fire Incidents</a></li>
+<header>
+    <nav>
+        <div class="line">
+            <div class="top-nav">
+                <div class="logo hide-l">
+                    <a href="{{ path('mainpage_page') }}">Data <br/><strong>Mapper</strong></a>
+                </div>
+                <p class="nav-text">Custom menu text</p>
+                <div class="top-nav s-12 l-5">
+                    <ul class="right top-ul chevron">
+                        <li><a href="{{ path('map') }}">Map</a>
+                        </li>
+                        <li><a href="{{ path('statistics') }}">Statistics</a>
+                            <ul>
+                                <li><a href="{{ path('crimestats') }}">Crime Rate</a></li>
+                                <li><a href="{{ path('firestats') }}">Fire Incidents</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ path('general_info') }}">Heatmap</a>
+                        </li>
                     </ul>
-                </li>
-                <li><a href="{{ path('general_info') }}">General Info</a></li>
-                <li><a href="{{ path('comp_tool') }}">Comparison Tool</a></li>
-                <li><a href="{{ path('faq') }}">Faq</a></li>
-                <li><a href="{{ path('about') }}">About</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
+                </div>
+                <ul class="s-12 l-2">
+                    <li class="logo hide-s hide-m">
+                        <a href="{{ path('mainpage_page') }}">Data <br/><strong>Mapper</strong></a>
+                    </li>
+                </ul>
+                <div class="top-nav s-12 l-5">
+                    <ul class="top-ul chevron">
+                        <li><a href="{{ path('comp_tool') }}">Comparison Tool</a>
+                        </li>
+                        <li><a href="{{ path('faq') }}">Faq</a>
+                        <li><a href="{{ path('about') }}">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
 
-
-<div class="container">
-    <div class="row">
-        {#<div class="col-md-12">#}
+<section>
+    <div id="first-block">
+        <div class="line">
             {% block body %}{% endblock %}
-        {#</div>#}
+        </div>
     </div>
-</div><!-- /.container -->
-
-
-{#<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">#}
-    {#<a class="btn-floating btn-large waves-effect waves-light red" href="{{ path('comp_tool') }}"><i#}
-                {#class="material-icons">compare</i></a>#}
-{#</div>#}
-
-
+    <div id="second-block">
+        <div class="line">
+            {% block block2 %}{% endblock %}
+        </div>
+    </div>
+</section>
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>

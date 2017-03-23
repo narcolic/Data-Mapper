@@ -11,6 +11,8 @@ class fypController extends Controller
 {
     /**
      * @Route("/intropage", name="intro_page")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function introAction(Request $request)
     {
@@ -26,7 +28,7 @@ class fypController extends Controller
     {
 
         // replace this example code with whatever you need
-        return $this->render('mainpage/mainpage.html.twig');
+        return $this->render('intro_page/mainpage.html.twig');
     }
 
     /**
@@ -59,6 +61,8 @@ class fypController extends Controller
 
     /**
      * @Route("/statistics", name="statistics")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function statisticsAction(Request $request)
     {
