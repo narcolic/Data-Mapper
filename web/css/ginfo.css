@@ -1,0 +1,28 @@
+* {
+    font-family: sans-serif;
+}
+#wrapper {
+    height: 500px;
+    width: 1000px;
+    margin: 30px auto;
+    padding: 0;
+}
+#container {
+    height: 470px;
+    margin-top: 30px;
+}
+#info {
+    margin-top: 30px;
+    border-left: 1px solid silver;
+}
+#info h2 {
+    display: inline;
+    font-size: 13pt;
+}
+#info .f32 .flag {
+    vertical-align: bottom !important;
+}
+
+#info h4 {
+    margin: 1em 0 0 0;
+}
