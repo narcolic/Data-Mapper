@@ -1,9 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="col-md-12">
-    map index
-    <div id="map"></div>
+    <div class="s-12 m-12 l-12" id="map"></div>
     <script>
         function initMap() {
             var aston = {lat: 52.487232, lng: -1.8896852};
@@ -11,8 +9,9 @@
                 zoom: 14,
                 center: aston
             });
+            map.setOptions({minZoom: 5, maxZoom: 30});
 
-
+            var crimemarkers = [];
             {% for key in viewCrimePoi %}
             var crimeicon = 'http://i.imgur.com/0ldv7Q8.png';
             var pos = new google.maps.LatLng({{ key.long }}, {{ key.lat }});
@@ -21,8 +20,36 @@
                 map: map,
                 icon: crimeicon
             });
+            crimemarkers.push(marker);
             {% endfor %}
+            var clusterStyles = [
+                {
+                    textColor: 'white',
+                    url: 'http://i.imgur.com/0ldv7Q8.png',
+                    height: 40,
+                    width: 40
+                },
+                {
+                    textColor: 'white',
+                    url: 'http://i.imgur.com/0ldv7Q8.png',
+                    height: 40,
+                    width: 40
+                },
+                {
+                    textColor: 'white',
+                    url: 'http://i.imgur.com/0ldv7Q8.png',
+                    height: 40,
+                    width: 40
+                }
+            ];
+            var mcOptions = {
+                gridSize: 50,
+                styles: clusterStyles,
+                maxZoom: 15
+            };
+            var crimeMarkerCluster = new MarkerClusterer(map, crimemarkers, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
+            var firemarkers = [];
             {% for key2 in viewFirepoi %}
             var fireicon = 'http://i.imgur.com/gFcRPgn.png';
             var pos2 = new google.maps.LatLng({{ key2.long }}, {{ key2.lat }});
@@ -31,27 +58,60 @@
                 map: map,
                 icon: fireicon
             });
+            firemarkers.push(marker2);
             {% endfor %}
+            var fireMarkerCluster = new MarkerClusterer(map, firemarkers, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
         }
     </script>
-
-    </div>
 {% endblock %}
 
 {% block block2 %}
     <div class="margin" id="container2">
         <div class="s-12 m-6 l-4 margin-bottom">
             <i class="icon-fire icon2x"></i>
-            <h2>Fire</h2>
+            <div class="[ form-group ]">
+                <input type="checkbox" name="fancy-checkbox-fire" id="fancy-checkbox-fire" autocomplete="off"/>
+                <div class="[ btn-group ]">
+                    <label for="fancy-checkbox-fire" class="[ btn btn-info ]">
+                        <span class="[ glyphicon glyphicon-ok ]"></span>
+                        <span> </span>
+                    </label>
+                    <label for="fancy-checkbox-fire" class="[ btn btn-default active ]">
+                        Fire Incidents
+                    </label>
+                </div>
+            </div>
         </div>
         <div class="s-12 m-6 l-4 margin-bottom">
             <i class="icon-link icon2x"></i>
-            <h2>Crime</h2>
+            <div class="[ form-group ]">
+                <input type="checkbox" name="fancy-checkbox-crime" id="fancy-checkbox-crime" autocomplete="off"/>
+                <div class="[ btn-group ]">
+                    <label for="fancy-checkbox-crime" class="[ btn btn-info ]">
+                        <span class="[ glyphicon glyphicon-ok ]"></span>
+                        <span> </span>
+                    </label>
+                    <label for="fancy-checkbox-crime" class="[ btn btn-default active ]">
+                        Crime Incidents
+                    </label>
+                </div>
+            </div>
         </div>
         <div class="s-12 m-6 l-4 margin-bottom">
             <i class="icon-globe icon2x"></i>
-            <h2>Traffic</h2>
+            <div class="[ form-group ]">
+                <input type="checkbox" name="fancy-checkbox-traffic" id="fancy-checkbox-traffic" autocomplete="off"/>
+                <div class="[ btn-group ]">
+                    <label for="fancy-checkbox-traffic" class="[ btn btn-info ]">
+                        <span class="[ glyphicon glyphicon-ok ]"></span>
+                        <span> </span>
+                    </label>
+                    <label for="fancy-checkbox-traffic" class="[ btn btn-default active ]">
+                        Traffic Details
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

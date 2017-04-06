@@ -1,12 +1,38 @@
 #map {
     height: 400px;
-    width: 100%;
-    margin-top: 5px;
+    width: 80%;
+    margin-top: 19px;
+    margin-left: 10%;
+    margin-right: auto;
 }
+
 #container2 {
     height: 78px;
     margin: 0 auto;
 }
+
 section h2 {
     color: #fff;
+}
+
+.form-group input[type="checkbox"] {
+    display: none;
+}
+
+.form-group input[type="checkbox"] + .btn-group > label span {
+    width: 20px;
+}
+
+.form-group input[type="checkbox"] + .btn-group > label span:first-child {
+    display: none;
+}
+.form-group input[type="checkbox"] + .btn-group > label span:last-child {
+    display: inline-block;
+}
+
+.form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+    display: inline-block;
+}
+.form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+    display: none;
 }
