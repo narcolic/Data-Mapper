@@ -1,4 +1,12 @@
 #map {
     height: 400px;
     width: 100%;
+    margin-top: 5px;
+}
+#container2 {
+    height: 78px;
+    margin: 0 auto;
+}
+section h2 {
+    color: #fff;
 }

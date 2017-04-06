@@ -115,7 +115,7 @@
                         $('#info h2').html('Comparing countries');
 
                     }
-                    $('#info .subheader').html('<h4>Historical population</h4><small><em>Shift + Click on map to compare countries</em></small>');
+                    $('#info .subheader').html('<h4>Urban population</h4><small><em>Shift + Click on map to compare countries</em></small>');
 
                     if (!countryChart) {
                         countryChart = Highcharts.chart('country-chart', {
@@ -219,7 +219,7 @@
                     data: data,
                     mapData: mapData,
                     joinBy: ['iso-a3', 'code3'],
-                    name: 'Current population',
+                    name: 'Current urban population',
                     allowPointSelect: true,
                     cursor: 'pointer',
                     states: {

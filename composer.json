@@ -34,7 +34,8 @@
         "symfony/assetic-bundle": "^2.8",
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "ob/highcharts-bundle": "^1.5",
-        "stof/doctrine-extensions-bundle": "^1.2"
+        "stof/doctrine-extensions-bundle": "^1.2",
+        "swiftmailer/swiftmailer": "^5.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
