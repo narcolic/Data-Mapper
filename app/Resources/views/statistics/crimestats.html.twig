@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block block1 %}
     <div class="col-md-12">
-    crime stats
-    <div id="linechart" style="height: 400px; margin: 100px auto"></div>
-    <br>
-    <div id="piechart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        crime stats
+        <div id="linechart" style="height: 400px; margin: 100px auto"></div>
+        <br>
+        <div id="piechart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
     </div>
 {% endblock %}
 
@@ -42,7 +42,7 @@
 
         Highcharts.chart('linechart', {
             title: {
-                text: 'Fire Incidents 2016 - 2017',
+                text: 'Crime Incidents 2016 - 2017',
                 x: -20 //center
             },
             subtitle: {
@@ -64,7 +64,7 @@
                 }]
             },
             tooltip: {
-                valueSuffix: ' Fires'
+                valueSuffix: ' Crimes'
             },
             legend: {
                 layout: 'vertical',

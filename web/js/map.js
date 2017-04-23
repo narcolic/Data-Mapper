@@ -1,6 +1,6 @@
 var map, trafficLayer, directionsDisplay;
-var crimemarkers = [];
-var firemarkers = [];
+var crimeMarkers = [];
+var fireMarkers = [];
 var crimeMarkerCluster;
 var fireMarkerCluster;
 
@@ -16,7 +16,7 @@ var createMarkers = function () {
             map: map,
             icon: crimeicon
         });
-        crimemarkers.push(marker);
+        crimeMarkers.push(marker);
     });
     var clusterStyles = [
         {
@@ -43,7 +43,7 @@ var createMarkers = function () {
         styles: clusterStyles,
         maxZoom: 15
     };
-    crimeMarkerCluster = new MarkerClusterer(map, crimemarkers, {
+    crimeMarkerCluster = new MarkerClusterer(map, crimeMarkers, {
         ignoreHiddenMarkers: true,
         imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
     });
@@ -57,11 +57,11 @@ var createMarkers = function () {
             map: map,
             icon: fireicon
         });
-        firemarkers.push(marker2);
+        fireMarkers.push(marker2);
     });
-    fireMarkerCluster = new MarkerClusterer(map, firemarkers, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+    fireMarkerCluster = new MarkerClusterer(map, fireMarkers, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
     //end markers
-}
+};
 
 var initMap = function () {
     console.log(crimeMarkersCoordinates, fireMarkersCoordinates);
@@ -77,6 +77,7 @@ var initMap = function () {
     directionsDisplay.setMap(map);
     createMarkers();
 
-}
+    categoryToggle($('input[name="fancy-checkbox-crime"]'), crimeMarkers, crimeMarkerCluster);
+    categoryToggle($('input[name="fancy-checkbox-fire"]'), fireMarkers, fireMarkerCluster);
 
-
+};

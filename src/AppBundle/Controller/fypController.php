@@ -9,22 +9,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 class fypController extends Controller
 {
-    /**
-     * @Route("/intropage", name="intro_page")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function introAction(Request $request)
-    {
-
-        // replace this example code with whatever you need
-        return $this->render('intropage/intro.html.twig');
-    }
 
     /**
      * @Route("/", name="mainpage_page")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param Request $request
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
 
         // replace this example code with whatever you need
@@ -32,18 +23,11 @@ class fypController extends Controller
     }
 
     /**
-     * @Route("/comparisontool", name="comp_tool")
-     */
-    public function comptoolAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('comptool/comparisontool.html.twig');
-    }
-
-    /**
      * @Route("/map", name="map")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param Request $request
      */
-    public function mapAction(Request $request)
+    public function mapAction()
     {
         $firepoi = $this->getDoctrine()
             ->getRepository('AppBundle:FirePoi')
@@ -53,27 +37,21 @@ class fypController extends Controller
             ->getRepository('AppBundle:CrimePoi')
             ->findAll();
 
-        return $this->render('mainpage/map.html.twig',
+        return $this->render(
+            'mainpage/map.html.twig',
             array(
                 'viewFirepoi' => $firepoi,
-                'viewCrimePoi' => $crimepoi));
-    }
-
-    /**
-     * @Route("/statistics", name="statistics")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function statisticsAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render(':statistics:statistics.html.twig');
+                'viewCrimePoi' => $crimepoi,
+            )
+        );
     }
 
     /**
      * @Route("/generalinfo", name="general_info")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param Request $request
      */
-    public function generalinfoAction(Request $request)
+    public function generalinfoAction()
     {
         // replace this example code with whatever you need
         return $this->render(':mainpage:ginfo.html.twig');
@@ -81,8 +59,10 @@ class fypController extends Controller
 
     /**
      * @Route("/faq", name="faq")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param Request $request
      */
-    public function faqAction(Request $request)
+    public function faqAction()
     {
 
         // replace this example code with whatever you need
@@ -91,50 +71,60 @@ class fypController extends Controller
 
     /**
      * @Route("/about", name="about")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function aboutAction(Request $request)
     {
-        $form = $this->createForm('Acme\Bundle\Type\ContactType',null,array(
-            // To set the action use $this->generateUrl('route_identifier')
-            'method' => 'POST'
-        ));
+        $form = $this->createForm(
+            'Acme\Bundle\Type\ContactType',
+            null,
+            array(
+                // To set the action use $this->generateUrl('route_identifier')
+                'method' => 'POST',
+            )
+        );
 
         if ($request->isMethod('POST')) {
             // Refill the fields in case the form is not valid.
             $form->handleRequest($request);
 
-            if($form->isValid()){
+            if ($form->isValid()) {
                 // Send mail
-                if($this->sendEmail($form->getData())){
+                if ($this->sendEmail($form->getData())) {
 
                     // Everything OK, redirect to wherever you want ! :
 
                     return $this->redirectToRoute('about');
-                }else{
+                } else {
                     // An error ocurred, handle
                     var_dump("Errooooor :(");
                 }
             }
         }
 
-        return $this->render('mainpage/about.html.twig', array(
-            'form' => $form->createView()
-        ));
+        return $this->render(
+            'mainpage/about.html.twig',
+            array(
+                'form' => $form->createView(),
+            )
+        );
     }
 
-    private function sendEmail($data){
+    private function sendEmail($data)
+    {
         $myappContactMail = 'narcolic832@gmail.com';
         $myappContactPassword = 'Onionada832@';
 
         // In this case we'll use the ZOHO mail services.
         // If your service is another, then read the following article to know which smpt code to use and which port
         // http://ourcodeworld.com/articles/read/14/swiftmailer-send-mails-from-php-easily-and-effortlessly
-        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
             ->setUsername($myappContactMail)
             ->setPassword($myappContactPassword);
 
         $mailer = \Swift_Mailer::newInstance($transport);
-        $message = \Swift_Message::newInstance("Our Code World Contact Form ". $data["subject"])
+        $message = \Swift_Message::newInstance("Our Code World Contact Form ".$data["subject"])
             ->setFrom(array($myappContactMail => "Message by ".$data["name"]))
             ->setTo(array($myappContactMail => $myappContactMail))
             ->setBody($data["message"]."<br>ContactMail :".$data["email"]);
@@ -145,74 +135,11 @@ class fypController extends Controller
     }
 
     /**
-     * @Route("/fire", name="fire")
-     */
-    public function fireAction(Request $request)
-    {
-
-        $firepoi = $this->getDoctrine()
-            ->getRepository('AppBundle:FirePoi')
-            ->findAll();
-
-        $brumfirepoi = $this->getDoctrine()
-            ->getRepository('AppBundle:FirePoi')
-            ->findBy(array('loc' => 'Birmingham'));
-
-        $londonfirepoi = $this->getDoctrine()
-            ->getRepository('AppBundle:FirePoi')
-            ->findBy(array('loc' => 'London'));
-
-        $manchfirepoi = $this->getDoctrine()
-            ->getRepository('AppBundle:FirePoi')
-            ->findBy(array('loc' => 'Manchester'));
-
-
-        $crimepoi = $this->getDoctrine()
-            ->getRepository('AppBundle:CrimePoi')
-            ->findAll();
-
-
-        // replace this example code with whatever you need
-        return $this->render(
-            'categories/fire.html.twig',
-            array(
-                'viewFirepoi' => $firepoi,
-                'viewCrimePoi' => $crimepoi,
-                'viewBrumFirePoi' => $brumfirepoi,
-                'viewLondonFirePoi' => $londonfirepoi,
-                'viewManchFirePoi' => $manchfirepoi,
-            )
-        );
-    }
-
-    /**
-     * @Route("/crime", name="crime")
-     */
-    public function crimeAction(Request $request)
-    {
-        $crimepoi = $this->getDoctrine()
-            ->getRepository('AppBundle:CrimePoi')
-            ->findAll();
-
-        // replace this example code with whatever you need
-        return $this->render('categories/crimerate.html.twig', array('viewCrimepoi' => $crimepoi));
-    }
-
-    /**
-     * @Route("/traffic", name="traffic")
-     */
-    public function trafficAction(Request $request)
-    {
-
-        // replace this example code with whatever you need
-        return $this->render('categories/traffic.html.twig');
-    }
-
-
-    /**
      * @Route("/firestats", name="firestats")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param Request $request
      */
-    public function firestatsAction(Request $request)
+    public function firestatsAction()
     {
 
         $brumfirepoi = $this->getDoctrine()
@@ -226,6 +153,7 @@ class fypController extends Controller
         $manchfirepoi = $this->getDoctrine()
             ->getRepository('AppBundle:FirePoi')
             ->findBy(array('loc' => 'Manchester'));
+
 // replace this example code with whatever you need
         return $this->render(
             'statistics/firestats.html.twig',
@@ -239,8 +167,10 @@ class fypController extends Controller
 
     /**
      * @Route("/crimestats", name="crimestats")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param Request $request
      */
-    public function crimestatsAction(Request $request)
+    public function crimestatsAction()
     {
 
         $brumfirepoi = $this->getDoctrine()
@@ -254,6 +184,7 @@ class fypController extends Controller
         $manchfirepoi = $this->getDoctrine()
             ->getRepository('AppBundle:FirePoi')
             ->findBy(array('loc' => 'Manchester'));
+
 // replace this example code with whatever you need
         return $this->render(
             'statistics/crimestats.html.twig',

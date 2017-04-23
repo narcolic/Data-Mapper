@@ -3,25 +3,23 @@
 {% block block1 %}
     <div class="s-12 m-12 l-12" id="map"></div>
     <script>
-        //markers Coordinates
+        //marker Coordinates
         var crimeMarkersCoordinates = [];
         {% for value in viewCrimePoi %}
-        var poi = {
+        var crimePosition = {
             long: {{ value.long }},
             lat: {{ value.lat }}
-        }
-        crimeMarkersCoordinates.push(poi);
+        };
+        crimeMarkersCoordinates.push(crimePosition);
         {% endfor %}
         var fireMarkersCoordinates = [];
         {% for value in viewFirepoi %}
-        var poi = {
+        var firePosition = {
             long: {{ value.long }},
             lat: {{ value.lat }}
-        }
-        fireMarkersCoordinates.push(poi);
+        };
+        fireMarkersCoordinates.push(firePosition);
         {% endfor %}
-
-
     </script>
 {% endblock %}
 
@@ -30,7 +28,7 @@
         <div class="s-12 m-6 l-4 margin-bottom">
             <i class="icon-fire icon2x"></i>
             <div class="[ form-group ]">
-                <input type="checkbox" name="fancy-checkbox-fire" id="fancy-checkbox-fire" autocomplete="off"/>
+                <input type="checkbox" name="fancy-checkbox-fire" id="fancy-checkbox-fire" autocomplete="off" checked/>
                 <div class="[ btn-group ]">
                     <label for="fancy-checkbox-fire" class="[ btn btn-info ]">
                         <span class="[ glyphicon glyphicon-ok ]"></span>
@@ -45,7 +43,8 @@
         <div class="s-12 m-6 l-4 margin-bottom">
             <i class="icon-link icon2x"></i>
             <div class="[ form-group ]">
-                <input type="checkbox" name="fancy-checkbox-crime" id="fancy-checkbox-crime" autocomplete="off"/>
+                <input type="checkbox" name="fancy-checkbox-crime" id="fancy-checkbox-crime" autocomplete="off"
+                       checked/>
                 <div class="[ btn-group ]">
                     <label for="fancy-checkbox-crime" class="[ btn btn-info ]">
                         <span class="[ glyphicon glyphicon-ok ]"></span>
@@ -73,11 +72,12 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block mapJS %}
     <script src="{{ asset('js/map.js') }}"></script>
     <script src="{{ asset('js/traffic_btn.js') }}"></script>
-    <script src="{{ asset('js/crime_btn.js') }}"></script>
+    <script src="{{ asset('js/category_buttons.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAvb9PdlmutL-nm7uJSKWJIzcHnXx1JUU&callback=initMap"
+            async defer></script>
 {% endblock %}
