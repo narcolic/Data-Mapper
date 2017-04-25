@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Data Mapper | Map{% endblock %}
+
 {% block block1 %}
     <div class="s-12 m-12 l-12" id="map"></div>
     <script>
         //marker Coordinates
+        //store markers to var to use them by JS
         var crimeMarkersCoordinates = [];
         {% for value in viewCrimePoi %}
         var crimePosition = {

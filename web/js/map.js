@@ -5,9 +5,6 @@ var crimeMarkerCluster;
 var fireMarkerCluster;
 
 var createMarkers = function () {
-    //markers
-
-
     $.each(crimeMarkersCoordinates, function (key, value) {
         var crimeicon = 'http://i.imgur.com/0ldv7Q8.png';
         var pos = new google.maps.LatLng(value.long, value.lat);
@@ -18,7 +15,7 @@ var createMarkers = function () {
         });
         crimeMarkers.push(marker);
     });
-    var clusterStyles = [
+    var crimeClusterStyle = [
         {
             textColor: 'white',
             url: 'http://i.imgur.com/0ldv7Q8.png',
@@ -40,13 +37,11 @@ var createMarkers = function () {
     ];
     var mcOptions = {
         gridSize: 50,
-        styles: clusterStyles,
+        styles: crimeClusterStyle,
+        ignoreHiddenMarkers: true,
         maxZoom: 15
     };
-    crimeMarkerCluster = new MarkerClusterer(map, crimeMarkers, {
-        ignoreHiddenMarkers: true,
-        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-    });
+    crimeMarkerCluster = new MarkerClusterer(map, crimeMarkers, mcOptions);
 
 
     $.each(fireMarkersCoordinates, function (key, value) {
@@ -59,8 +54,33 @@ var createMarkers = function () {
         });
         fireMarkers.push(marker2);
     });
-    fireMarkerCluster = new MarkerClusterer(map, fireMarkers, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-    //end markers
+    var fireClusterStyle = [
+        {
+            textColor: 'white',
+            url: 'http://i.imgur.com/0ldv7Q8.png',
+            height: 40,
+            width: 40
+        },
+        {
+            textColor: 'white',
+            url: 'http://i.imgur.com/0ldv7Q8.png',
+            height: 40,
+            width: 40
+        },
+        {
+            textColor: 'white',
+            url: 'http://i.imgur.com/0ldv7Q8.png',
+            height: 40,
+            width: 40
+        }
+    ];
+    var mfOptions = {
+        gridSize: 50,
+        styles: fireClusterStyle,
+        ignoreHiddenMarkers: true,
+        maxZoom: 15
+    };
+    fireMarkerCluster = new MarkerClusterer(map, fireMarkers, mfOptions);
 };
 
 var initMap = function () {

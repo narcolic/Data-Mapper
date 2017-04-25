@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
 
 
     {% block stylesheets %}
@@ -42,7 +42,7 @@
                 <div class="logo hide-l">
                     <a href="{{ path('mainpage_page') }}">Data <br/><strong>Mapper</strong></a>
                 </div>
-                <p class="nav-text">Custom menu text</p>
+                <p class="nav-text">Main Menu</p>
                 <div class="top-nav s-12 l-5">
                     <ul class="right top-ul chevron">
                         <li><a href="{{ path('map') }}">Map</a>
@@ -67,7 +67,7 @@
                         {# <li><a href="{{ path('comp_tool') }}">Comparison Tool</a>
                          </li>#}
                         <li><a href="{{ path('faq') }}">Faq</a>
-                        <li><a href="{{ path('about') }}">Contact</a>
+                        <li><a href="{{ path('contact') }}">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -112,6 +112,7 @@
     <script src="{{ asset('js/dropdown.js') }}"></script>
     {% block chartJS %}{% endblock %}
     {% block mapJS %}{% endblock %}
+    {% block otherJS %}{% endblock %}
 
 {% endblock %}
 

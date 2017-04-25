@@ -70,11 +70,11 @@ class fypController extends Controller
     }
 
     /**
-     * @Route("/about", name="about")
+     * @Route("/contact", name="contact")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function aboutAction(Request $request)
+    public function contactAction(Request $request)
     {
         $form = $this->createForm(
             'Acme\Bundle\Type\ContactType',
@@ -95,16 +95,16 @@ class fypController extends Controller
 
                     // Everything OK, redirect to wherever you want ! :
 
-                    return $this->redirectToRoute('about');
+                    return $this->redirectToRoute('contact');
                 } else {
-                    // An error ocurred, handle
-                    var_dump("Errooooor :(");
+                    // An error occurred, handle
+                    var_dump("Error :(");
                 }
             }
         }
 
         return $this->render(
-            'mainpage/about.html.twig',
+            ':mainpage:contact.html.twig',
             array(
                 'form' => $form->createView(),
             )
