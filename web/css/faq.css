@@ -1,0 +1,20 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+
+.faqHeader {
+    font-size: 27px;
+    margin: 20px;
+}
+
+.panel-heading [data-toggle="collapse"]:after {
+    font-family: 'FontAwesome';
+    content: "\f078"; /* "play" icon */
+    float: right;
+    color: #2fcbe0;
+    font-size: 18px;
+    line-height: 22px;
+
+}
+
+.panel-heading [data-toggle="collapse"].collapsed:after {
+    color: #454444;
+}
