@@ -18,19 +18,19 @@ var createMarkers = function () {
     var crimeClusterStyle = [
         {
             textColor: 'white',
-            url: 'http://i.imgur.com/0ldv7Q8.png',
+            url: 'http://i.imgur.com/zpeXWBT.png',
             height: 40,
             width: 40
         },
         {
             textColor: 'white',
-            url: 'http://i.imgur.com/0ldv7Q8.png',
+            url: 'http://i.imgur.com/Dp3uOjo.png',
             height: 40,
             width: 40
         },
         {
             textColor: 'white',
-            url: 'http://i.imgur.com/0ldv7Q8.png',
+            url: 'http://i.imgur.com/7s9LMVZ.png',
             height: 40,
             width: 40
         }
@@ -57,19 +57,19 @@ var createMarkers = function () {
     var fireClusterStyle = [
         {
             textColor: 'white',
-            url: 'http://i.imgur.com/0ldv7Q8.png',
+            url: 'http://i.imgur.com/Lsk0ukb.png',
             height: 40,
             width: 40
         },
         {
             textColor: 'white',
-            url: 'http://i.imgur.com/0ldv7Q8.png',
+            url: 'http://i.imgur.com/lMtC1v2.png',
             height: 40,
             width: 40
         },
         {
             textColor: 'white',
-            url: 'http://i.imgur.com/0ldv7Q8.png',
+            url: 'http://i.imgur.com/MaudGLR.png',
             height: 40,
             width: 40
         }
