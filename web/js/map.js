@@ -48,8 +48,7 @@ var createMarkers = function () {
         var fireicon = 'http://i.imgur.com/gFcRPgn.png';
         var pos2 = new google.maps.LatLng(value.long, value.lat);
         var marker2 = new google.maps.Marker({
-            position: pos2,
-            map: map,
+            position: pos2,            map: map,
             icon: fireicon
         });
         fireMarkers.push(marker2);
