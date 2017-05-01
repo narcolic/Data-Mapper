@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4706acd0-b650-4894-8a3c-c0f569cdcfc0" name="My Local Dep" url="http://fyp.com:8080/">
+        <fileTransfer port="0" mountedRoot="C:\Users\narco\Downloads\fyp" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

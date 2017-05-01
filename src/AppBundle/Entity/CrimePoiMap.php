@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Entity;
 
-class CrimePoi
+class CrimePoiMap
 {
     private $id;
 
@@ -29,7 +29,7 @@ class CrimePoi
      *
      * @param float $long
      *
-     * @return CrimePoi
+     * @return CrimePoiMap
      */
     public function setLong($long)
     {
@@ -53,7 +53,7 @@ class CrimePoi
      *
      * @param float $lat
      *
-     * @return CrimePoi
+     * @return CrimePoiMap
      */
     public function setLat($lat)
     {
@@ -77,7 +77,7 @@ class CrimePoi
      *
      * @param \DateTime $date
      *
-     * @return CrimePoi
+     * @return CrimePoiMap
      */
     public function setDate($date)
     {
@@ -101,7 +101,7 @@ class CrimePoi
      *
      * @param string $idloc
      *
-     * @return CrimePoi
+     * @return CrimePoiMap
      */
     public function setIdloc($idloc)
     {

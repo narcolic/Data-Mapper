@@ -18,7 +18,7 @@
 
         var bmonths = [];
         var bcounter = 0;
-        {% for bi in viewBrumFirePoi %}
+        {% for bi in viewBrumCrimePoi %}
         bmonths[bcounter] = {{ bi.month }};
         bcounter++;
         {% endfor %}
@@ -26,7 +26,7 @@
 
         var lmonths = [];
         var lcounter = 0;
-        {% for li in viewLondonFirePoi %}
+        {% for li in viewLondonCrimePoi %}
         lmonths[lcounter] = {{ li.month }};
         lcounter++;
         {% endfor %}
@@ -34,7 +34,7 @@
 
         var mmonths = [];
         var mcounter = 0;
-        {% for mi in viewManchFirePoi %}
+        {% for mi in viewManchCrimePoi %}
         mmonths[mcounter] = {{ mi.month }};
         mcounter++;
         {% endfor %}
@@ -47,7 +47,7 @@
                 x: -20 //center
             },
             subtitle: {
-                text: 'Source: Demo database',
+                text: 'Source: https://data.police.uk/',
                 x: -20
             },
             xAxis: {
@@ -74,13 +74,13 @@
                 borderWidth: 0
             },
             series: [{
-                name: 'Birmingham',
+                name: 'West Midlands',
                 data: [bmonthcounter[0], bmonthcounter[1], bmonthcounter[2], bmonthcounter[3], bmonthcounter[4], bmonthcounter[5], bmonthcounter[6], bmonthcounter[7], bmonthcounter[8], bmonthcounter[9], bmonthcounter[10], bmonthcounter[11]]
             }, {
-                name: 'London',
+                name: 'City of London',
                 data: [lmonthcounter[0], lmonthcounter[1], lmonthcounter[2], lmonthcounter[3], lmonthcounter[4], lmonthcounter[5], lmonthcounter[6], lmonthcounter[7], lmonthcounter[8], lmonthcounter[9], lmonthcounter[10], lmonthcounter[11]]
             }, {
-                name: 'Manchester',
+                name: 'Durham',
                 data: [mmonthcounter[0], mmonthcounter[1], mmonthcounter[2], mmonthcounter[3], mmonthcounter[4], mmonthcounter[5], mmonthcounter[6], mmonthcounter[7], mmonthcounter[8], mmonthcounter[9], mmonthcounter[10], mmonthcounter[11]]
             }]
         });
@@ -113,14 +113,14 @@
                 name: 'Total of',
                 colorByPoint: true,
                 data: [{
-                    name: 'Birmingham',
+                    name: 'West Midlands',
                     y: bmonths.length
                 }, {
-                    name: 'London',
+                    name: 'City of London',
                     y: lmonths.length,
                     selected: true
                 }, {
-                    name: 'Manchester',
+                    name: 'Durham',
                     y: mmonths.length
                 }]
             }]

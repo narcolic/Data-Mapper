@@ -1,7 +1,7 @@
-# src/AppBundle/Resources/config/doctrine/CrimePoi.orm.yml
-AppBundle\Entity\CrimePoi:
+# src/AppBundle/Resources/config/doctrine/CrimePoiMap.orm.yml
+AppBundle\Entity\CrimePoiMap:
     type: entity
-    table: Crimepoi
+    table: Crimepoimap
     id:
         id:
             type: integer

@@ -6,8 +6,10 @@ var fireMarkerCluster;
 
 var createMarkers = function () {
     $.each(crimeMarkersCoordinates, function (key, value) {
+        //console.log("in");
         var crimeicon = 'http://i.imgur.com/0ldv7Q8.png';
-        var pos = new google.maps.LatLng(value.long, value.lat);
+        //console.log(value.long);
+        var pos = new google.maps.LatLng(value.lat, value.long);
         var marker = new google.maps.Marker({
             position: pos,
             map: map,
@@ -46,9 +48,10 @@ var createMarkers = function () {
 
     $.each(fireMarkersCoordinates, function (key, value) {
         var fireicon = 'http://i.imgur.com/gFcRPgn.png';
-        var pos2 = new google.maps.LatLng(value.long, value.lat);
+        var pos2 = new google.maps.LatLng(value.lat, value.long);
         var marker2 = new google.maps.Marker({
-            position: pos2,            map: map,
+            position: pos2,
+            map: map,
             icon: fireicon
         });
         fireMarkers.push(marker2);
@@ -83,8 +86,6 @@ var createMarkers = function () {
 };
 
 var initMap = function () {
-    console.log(crimeMarkersCoordinates, fireMarkersCoordinates);
-
     directionsDisplay = new google.maps.DirectionsRenderer();
     trafficLayer = new google.maps.TrafficLayer();
     var aston = {lat: 52.487232, lng: -1.8896852};

@@ -30,7 +30,7 @@ class fypController extends Controller
     public function mapAction()
     {
         $firepoi = $this->getDoctrine()
-            ->getRepository('AppBundle:FirePoi')
+            ->getRepository('AppBundle:CrimePoiMap')
             ->findAll();
 
         $crimepoi = $this->getDoctrine()
@@ -174,24 +174,24 @@ class fypController extends Controller
     {
 
         $brumfirepoi = $this->getDoctrine()
-            ->getRepository('AppBundle:FirePoi')
-            ->findBy(array('loc' => 'Birmingham'));
+            ->getRepository('AppBundle:CrimePoi')
+            ->findBy(array('idloc' => 'West Midlands'));
 
         $londonfirepoi = $this->getDoctrine()
-            ->getRepository('AppBundle:FirePoi')
-            ->findBy(array('loc' => 'London'));
+            ->getRepository('AppBundle:CrimePoi')
+            ->findBy(array('idloc' => 'City of London'));
 
         $manchfirepoi = $this->getDoctrine()
-            ->getRepository('AppBundle:FirePoi')
-            ->findBy(array('loc' => 'Manchester'));
+            ->getRepository('AppBundle:CrimePoi')
+            ->findBy(array('idloc' => 'Durham'));
 
 // replace this example code with whatever you need
         return $this->render(
             'statistics/crimestats.html.twig',
             array(
-                'viewBrumFirePoi' => $brumfirepoi,
-                'viewLondonFirePoi' => $londonfirepoi,
-                'viewManchFirePoi' => $manchfirepoi,
+                'viewBrumCrimePoi' => $brumfirepoi,
+                'viewLondonCrimePoi' => $londonfirepoi,
+                'viewManchCrimePoi' => $manchfirepoi,
             )
         );
     }
