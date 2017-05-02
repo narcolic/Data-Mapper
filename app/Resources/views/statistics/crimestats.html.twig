@@ -16,34 +16,38 @@
     <script src="{{ asset('js/exporting.src.js') }}"></script>
     <script type="text/javascript">
 
-        var bmonths = [];
-        var bcounter = 0;
-        {% for bi in viewBrumCrimePoi %}
-        bmonths[bcounter] = {{ bi.month }};
-        bcounter++;
+        //Calculating incidents per month
+        var westMidlandsMonthWhenEventHappened = [];
+        var westMidlandsEventCounter = 0;
+        {% for bi in viewWestMidlandsCrimePOI %}
+        westMidlandsMonthWhenEventHappened[westMidlandsEventCounter] = {{ bi.month }};
+        westMidlandsEventCounter++;
         {% endfor %}
-        var bmonthcounter = monthcounter(bmonths);
+        var westMidlandsEventPerMonth = monthCounter(westMidlandsMonthWhenEventHappened);
 
-        var lmonths = [];
-        var lcounter = 0;
-        {% for li in viewLondonCrimePoi %}
-        lmonths[lcounter] = {{ li.month }};
-        lcounter++;
+        console.log(westMidlandsMonthWhenEventHappened);
+        console.log(westMidlandsEventPerMonth);
+
+        var londonMonthWhenEventHappened = [];
+        var londonEventCounter = 0;
+        {% for li in viewLondonCrimePOI %}
+        londonMonthWhenEventHappened[londonEventCounter] = {{ li.month }};
+        londonEventCounter++;
         {% endfor %}
-        var lmonthcounter = monthcounter(lmonths);
+        var londonEventPerMonth = monthCounter(londonMonthWhenEventHappened);
 
-        var mmonths = [];
-        var mcounter = 0;
-        {% for mi in viewManchCrimePoi %}
-        mmonths[mcounter] = {{ mi.month }};
-        mcounter++;
+        var durhamMonthWhenEventHappened = [];
+        var durhamEventCounter = 0;
+        {% for mi in viewDurhamCrimePOI %}
+        durhamMonthWhenEventHappened[durhamEventCounter] = {{ mi.month }};
+        durhamEventCounter++;
         {% endfor %}
-        var mmonthcounter = monthcounter(mmonths);
+        var durhamEventPerMonth = monthCounter(durhamMonthWhenEventHappened);
 
-
+        //Creating a linechart with HighCharts
         Highcharts.chart('linechart', {
             title: {
-                text: 'Crime Incidents 2016 - 2017',
+                text: 'Crime Incidents 2016',
                 x: -20 //center
             },
             subtitle: {
@@ -75,17 +79,17 @@
             },
             series: [{
                 name: 'West Midlands',
-                data: [bmonthcounter[0], bmonthcounter[1], bmonthcounter[2], bmonthcounter[3], bmonthcounter[4], bmonthcounter[5], bmonthcounter[6], bmonthcounter[7], bmonthcounter[8], bmonthcounter[9], bmonthcounter[10], bmonthcounter[11]]
+                data: [westMidlandsEventPerMonth[0], westMidlandsEventPerMonth[1], westMidlandsEventPerMonth[2], westMidlandsEventPerMonth[3], westMidlandsEventPerMonth[4], westMidlandsEventPerMonth[5], westMidlandsEventPerMonth[6], westMidlandsEventPerMonth[7], westMidlandsEventPerMonth[8], westMidlandsEventPerMonth[9], westMidlandsEventPerMonth[10], westMidlandsEventPerMonth[11]]
             }, {
                 name: 'City of London',
-                data: [lmonthcounter[0], lmonthcounter[1], lmonthcounter[2], lmonthcounter[3], lmonthcounter[4], lmonthcounter[5], lmonthcounter[6], lmonthcounter[7], lmonthcounter[8], lmonthcounter[9], lmonthcounter[10], lmonthcounter[11]]
+                data: [londonEventPerMonth[0], londonEventPerMonth[1], londonEventPerMonth[2], londonEventPerMonth[3], londonEventPerMonth[4], londonEventPerMonth[5], londonEventPerMonth[6], londonEventPerMonth[7], londonEventPerMonth[8], londonEventPerMonth[9], londonEventPerMonth[10], londonEventPerMonth[11]]
             }, {
                 name: 'Durham',
-                data: [mmonthcounter[0], mmonthcounter[1], mmonthcounter[2], mmonthcounter[3], mmonthcounter[4], mmonthcounter[5], mmonthcounter[6], mmonthcounter[7], mmonthcounter[8], mmonthcounter[9], mmonthcounter[10], mmonthcounter[11]]
+                data: [durhamEventPerMonth[0], durhamEventPerMonth[1], durhamEventPerMonth[2], durhamEventPerMonth[3], durhamEventPerMonth[4], durhamEventPerMonth[5], durhamEventPerMonth[6], durhamEventPerMonth[7], durhamEventPerMonth[8], durhamEventPerMonth[9], durhamEventPerMonth[10], durhamEventPerMonth[11]]
             }]
         });
 
-
+        //Creating a piechart with HighCharts
         Highcharts.chart('piechart', {
             chart: {
                 plotBackgroundColor: null,
@@ -95,6 +99,10 @@
             },
             title: {
                 text: 'Incidents Comparison by Area, 2016-2017'
+            },
+            subtitle: {
+                text: 'Source: https://data.police.uk/',
+                x: -20
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -114,25 +122,27 @@
                 colorByPoint: true,
                 data: [{
                     name: 'West Midlands',
-                    y: bmonths.length
+                    y: westMidlandsMonthWhenEventHappened.length
                 }, {
                     name: 'City of London',
-                    y: lmonths.length,
+                    y: londonMonthWhenEventHappened.length,
                     selected: true
                 }, {
                     name: 'Durham',
-                    y: mmonths.length
+                    y: durhamMonthWhenEventHappened.length
                 }]
             }]
         });
 
-
-        function monthcounter(params) {
-            var counts = new Uint8Array(12);
+        //loops through array and counts event per month
+        //e.g. if month is 1 it will add 1 in counts[0]
+        //if month is 9 it will add 1 in counts[8] and so on
+        function monthCounter(params) {
+            var counts= new Array(12).fill(0);
             var num = 0;
+            var testarray = 0;
             for (var i = 0; i < params.length; i++) {
-                num = params[i];
-                counts[num - 1] = counts[num - 1] ? counts[num - 1] + 1 : 1;
+                counts[params[i] - 1]++;
             }
             return counts;
         }

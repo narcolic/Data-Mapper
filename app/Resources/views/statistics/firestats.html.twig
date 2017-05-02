@@ -19,7 +19,7 @@
         bmonths[bcounter] = {{ bi.month }};
         bcounter++;
         {% endfor %}
-        var bmonthcounter = monthcounter(bmonths);
+        var bmonthcounter = monthCounter(bmonths);
 
         var lmonths = [];
         var lcounter = 0;
@@ -27,7 +27,7 @@
         lmonths[lcounter] = {{ li.month }};
         lcounter++;
         {% endfor %}
-        var lmonthcounter = monthcounter(lmonths);
+        var lmonthcounter = monthCounter(lmonths);
 
         var mmonths = [];
         var mcounter = 0;
@@ -35,16 +35,16 @@
         mmonths[mcounter] = {{ mi.month }};
         mcounter++;
         {% endfor %}
-        var mmonthcounter = monthcounter(mmonths);
+        var mmonthcounter = monthCounter(mmonths);
 
 
         Highcharts.chart('linechart', {
             title: {
-                text: 'Fire Incidents 2016 - 2017',
+                text: 'Fire Incidents 2016',
                 x: -20 //center
             },
             subtitle: {
-                text: 'Source: Demo database',
+                text: 'Source: https://data.gov.uk/',
                 x: -20
             },
             xAxis: {
@@ -77,7 +77,7 @@
                 name: 'London',
                 data: [lmonthcounter[0], lmonthcounter[1], lmonthcounter[2], lmonthcounter[3], lmonthcounter[4], lmonthcounter[5], lmonthcounter[6], lmonthcounter[7], lmonthcounter[8], lmonthcounter[9], lmonthcounter[10], lmonthcounter[11]]
             }, {
-                name: 'Manchester',
+                name: 'Durham',
                 data: [mmonthcounter[0], mmonthcounter[1], mmonthcounter[2], mmonthcounter[3], mmonthcounter[4], mmonthcounter[5], mmonthcounter[6], mmonthcounter[7], mmonthcounter[8], mmonthcounter[9], mmonthcounter[10], mmonthcounter[11]]
             }]
         });
@@ -92,6 +92,10 @@
             },
             title: {
                 text: 'Incidents Comparison by Area, 2016-2017'
+            },
+            subtitle: {
+                text: 'Source: https://data.gov.uk/',
+                x: -20
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -117,14 +121,16 @@
                     y: lmonths.length,
                     selected: true
                 }, {
-                    name: 'Manchester',
+                    name: 'Durham',
                     y: mmonths.length
                 }]
             }]
         });
 
-
-        function monthcounter(params) {
+        //loops through array and counts event per month
+        //e.g. if month is 1 it will add 1 in counts[0]
+        //if month is 9 it will add 1 in counts[8] and so on
+        function monthCounter(params) {
             var counts = new Uint8Array(12);
             var num = 0;
             for (var i = 0; i < params.length; i++) {

@@ -1,7 +1,7 @@
-# src/AppBundle/Resources/config/doctrine/CrimePoiMap.orm.yml
-AppBundle\Entity\CrimePoiMap:
+# src/AppBundle/Resources/config/doctrine/CrimePoiSample.orm.yml
+AppBundle\Entity\FirePoiSample:
     type: entity
-    table: Crimepoimap
+    table: Firepoisample
     id:
         id:
             type: integer

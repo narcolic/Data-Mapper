@@ -12,8 +12,8 @@
     <schema id="6" parent="1" name="phpmyadmin"/>
     <schema id="7" parent="1" name="test"/>
     <table id="8" parent="2" name="crimepoi"/>
-    <table id="9" parent="2" name="crimepoimap"/>
-    <table id="10" parent="2" name="firepoi"/>
+    <table id="9" parent="2" name="firepoi"/>
+    <table id="10" parent="2" name="firepoisample"/>
     <table id="11" parent="2" name="location"/>
     <table id="12" parent="2" name="migration_versions"/>
     <column id="13" parent="8" name="id">
@@ -68,7 +68,7 @@
       <DataType>longtext|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="23" parent="9" name="idloc">
+    <column id="23" parent="9" name="loc">
       <Position>5</Position>
       <DataType>longtext|0</DataType>
       <NotNull>1</NotNull>
@@ -99,7 +99,7 @@
       <DataType>longtext|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="29" parent="10" name="loc">
+    <column id="29" parent="10" name="idloc">
       <Position>5</Position>
       <DataType>longtext|0</DataType>
       <NotNull>1</NotNull>

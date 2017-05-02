@@ -30,7 +30,7 @@ class fypController extends Controller
     public function mapAction()
     {
         $firepoi = $this->getDoctrine()
-            ->getRepository('AppBundle:CrimePoiMap')
+            ->getRepository('AppBundle:FirePoiSample')
             ->findAll();
 
         $crimepoi = $this->getDoctrine()
@@ -116,9 +116,6 @@ class fypController extends Controller
         $myappContactMail = 'narcolic832@gmail.com';
         $myappContactPassword = 'Onionada832@';
 
-        // In this case we'll use the ZOHO mail services.
-        // If your service is another, then read the following article to know which smpt code to use and which port
-        // http://ourcodeworld.com/articles/read/14/swiftmailer-send-mails-from-php-easily-and-effortlessly
         $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
             ->setUsername($myappContactMail)
             ->setPassword($myappContactPassword);
@@ -173,15 +170,15 @@ class fypController extends Controller
     public function crimestatsAction()
     {
 
-        $brumfirepoi = $this->getDoctrine()
+        $westMidlandsCrimePOI = $this->getDoctrine()
             ->getRepository('AppBundle:CrimePoi')
             ->findBy(array('idloc' => 'West Midlands'));
 
-        $londonfirepoi = $this->getDoctrine()
+        $londonCrimePOI = $this->getDoctrine()
             ->getRepository('AppBundle:CrimePoi')
             ->findBy(array('idloc' => 'City of London'));
 
-        $manchfirepoi = $this->getDoctrine()
+        $durhamCrimePOI = $this->getDoctrine()
             ->getRepository('AppBundle:CrimePoi')
             ->findBy(array('idloc' => 'Durham'));
 
@@ -189,9 +186,9 @@ class fypController extends Controller
         return $this->render(
             'statistics/crimestats.html.twig',
             array(
-                'viewBrumCrimePoi' => $brumfirepoi,
-                'viewLondonCrimePoi' => $londonfirepoi,
-                'viewManchCrimePoi' => $manchfirepoi,
+                'viewWestMidlandsCrimePOI' => $westMidlandsCrimePOI,
+                'viewLondonCrimePOI' => $londonCrimePOI,
+                'viewDurhamCrimePOI' => $durhamCrimePOI,
             )
         );
     }
