@@ -19,7 +19,7 @@
 
 
 {% block chartJS %}
-    <script src="{{ asset('js/highcharts.js') }}"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="{{ asset('js/exporting.src.js') }}"></script>
     <script src="https://code.highcharts.com/maps/modules/map.js"></script>
     <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
@@ -235,7 +235,7 @@
             });
 
             // Pre-select a country
-            mapChart.get('us').select();
+            //mapChart.get('us').select();
         });
 
         // tell the embed parent frame the height of the content
