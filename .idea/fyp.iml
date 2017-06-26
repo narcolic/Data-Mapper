@@ -90,16 +90,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library name="PHARS">
-        <CLASSES>
-          <root url="phar://$MODULE_DIR$/behat.phar/" />
-        </CLASSES>
-        <SOURCES>
-          <root url="phar://$MODULE_DIR$/behat.phar/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="materialize" level="application" />
     <orderEntry type="library" name="highcharts" level="application" />
